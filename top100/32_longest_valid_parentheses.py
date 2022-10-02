@@ -2,6 +2,8 @@ class Solution:
     def calc(self, i, k):
         if i == -1:
             return 0 if not k else -1
+        if k > i + 1:
+            return -1
         if k in self.f[i]:
             return self.f[i][k]
         if self.s[i] == '(':
@@ -31,11 +33,13 @@ class Solution:
         self.s = s
         self.f = [{} for _ in range(n)]
         for i in range(n):
-            res = max(res, self.calc(i, 0))
-        # for i in range(n):
-        #     print(self.f[i])
+            if s[i] == ')':
+                res = max(res, self.calc(i, 0))
+        for i in range(n):
+            print(self.f[i])
         # print(self.calc(0, 1))
+        print(n)
         return res
 
-print(Solution().longestValidParentheses(")()())()()("))
+print(Solution().longestValidParentheses("()()()(((((((((((((((((((((((((((()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((()))))))))))))))))"))
         
