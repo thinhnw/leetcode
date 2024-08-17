@@ -11,14 +11,20 @@ class Solution(object):
         m = len(points)
         n = len(points[0])
         for i in range(1, m):
-            left = [0]
             right = []
+            max_right = []
+            max_left = 0
             for j in reversed(range(n)):
                 right.append(f[i-1][j] - j)
+                if len(max_right) == 0:
+                    max_right.append(right[-1])
+                else:
+                    max_right.append(max(max_right[-1], right[-1]))
             # print(list(reversed(right)))
             for j in range(n):
-                f[i][j] = max(max(left) - j, max(right) + j) + points[i][j]
-                left.append(right.pop() + j + j)
+                f[i][j] = max(max_left - j, max_right[-1] + j) + points[i][j]
+                max_left = max(max_left, right.pop() + j + j)
+                max_right.pop()
         # for a in f:
         #     print(a)
         print(max(f[m-1]))
