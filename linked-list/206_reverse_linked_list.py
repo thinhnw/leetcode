@@ -17,9 +17,7 @@ class Solution:
         current = head
         while current:
             nextTmp = current.next
-            print("tmp", nextTmp.to_a() if nextTmp else [])
             current.next = prev
-            print("current", current.to_a() if current else [])
             prev = current
             current = nextTmp
         return prev
@@ -35,6 +33,6 @@ while a_len > 1:
     a_node_new.next = a_node
     a_node = a_node_new
 
-print(a_node.to_a())
+
 print(Solution().rev(a_node).to_a())
         
